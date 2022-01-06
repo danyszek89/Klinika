@@ -261,6 +261,7 @@ namespace Klinika {
 			this->button4->TabIndex = 3;
 			this->button4->Text = L"10:00 - 18:00";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &Program::button4_Click);
 			// 
 			// button3
 			// 
@@ -270,6 +271,7 @@ namespace Klinika {
 			this->button3->TabIndex = 2;
 			this->button3->Text = L"9:00 - 17:00";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &Program::button3_Click);
 			// 
 			// button2
 			// 
@@ -791,14 +793,14 @@ namespace Klinika {
 		}
 	}
 
-	private: Void czas_pracy() {
+	private: Void czas_pracy(int czasStart) {
 		array<TextBox^>^ czas_pocz = { txtU1p, txtU2p, txtU3p, txtU4p, txtU5p, txtU6p };
 		array<TextBox^>^ czas_kon = { txtU1k, txtU2k, txtU3k, txtU4k, txtU5k, txtU6k };
 
 		for (int i = 0; i <= 5; i++)
 		{
-			czas_pocz[i]->Text = "7:00";
-			czas_kon[i]->Text = "15:00";
+			czas_pocz[i]->Text = czasStart+":00";
+			czas_kon[i]->Text = czasStart+8+":00";
 		}
 	}
 
@@ -864,7 +866,7 @@ namespace Klinika {
 		}
 		else
 		{
-			MessageBox::Show("Dane poprawne");
+			//MessageBox::Show("Dane poprawne");
 			uzytkownik_rodzaj();
 		}
 
@@ -887,10 +889,10 @@ namespace Klinika {
 			{
 				polecenie->CommandText = "INSERT INTO godziny SET uzytkownik_id=last_insert_id(), pon_od='" + txtU1p->Text + "', pon_do= '" + txtU1k->Text + "',wt_od='" + txtU2p->Text + "', wt_do= '" + txtU2k->Text + "', sr_od='" + txtU3p->Text + "', sr_do= '" + txtU3k->Text + "', czw_od='" + txtU4p->Text + "', czw_do= '" + txtU4k->Text + "',pt_od='" + txtU5p->Text + "', pt_do= '" + txtU5k->Text + "',so_od='" + txtU6p->Text + "', so_do= '" + txtU6k->Text + "';";
 				polecenie->ExecuteNonQuery();
-				MessageBox::Show("Pracownik" + txtULogin->Text + "zostal dodany");
+				MessageBox::Show("Pracownik " + txtULogin->Text + " zostal dodany");
 			}
-			else {
-				MessageBox::Show("Uzytkownik" + txtULogin->Text + "zostal dodany");
+			else { 
+				MessageBox::Show("Uzytkownik " + txtULogin->Text + " zostal dodany");
 			}				
 
 			transakcja->Commit();
@@ -904,7 +906,7 @@ namespace Klinika {
 		pokaz_siatke();
 		wyczysc(gBEdycja);
 
-		MySqlCommand^ zapytanie = gcnew MySqlCommand("UPDATE imie, nazwisko, uzytkownik_nazwa FROM uzytkownik where CONCAT(imie, ' ', nazwisko, uzytkownik_nazwa) LIKE '%" + txtUNazwa->Text + "%';", laczBaze);
+		//MySqlCommand^ zapytanie = gcnew MySqlCommand("UPDATE imie, nazwisko, uzytkownik_nazwa FROM uzytkownik where CONCAT(imie, ' ', nazwisko, uzytkownik_nazwa) LIKE '%" + txtUNazwa->Text + "%';", laczBaze);
 	}
 
 	// USUWANIE
@@ -976,6 +978,10 @@ namespace Klinika {
 		{
 			polecenie->CommandText = "UPDATE uzytkownik SET imie='" + txtUImie->Text + "', nazwisko='" + txtUNazwisko->Text + "', uzytkownik_nazwa = '" + txtULogin->Text + "', pracownik='"+pracownik_rodzaj+"'WHERE uzytkownik_id="+id_rekordu+";";
 			polecenie->ExecuteNonQuery();
+
+
+
+
 			transakcja->Commit();
 			MessageBox::Show("Dane u¿ytkownika "+txtULogin->Text+" zosta³y zmodyfikowane");
 			/*if (chbUPracownik->Checked)
@@ -999,7 +1005,7 @@ namespace Klinika {
 		pokaz_siatke();
 		wyczysc(gBEdycja);
 
-		MySqlCommand^ zapytanie = gcnew MySqlCommand("UPDATE imie, nazwisko, uzytkownik_nazwa FROM uzytkownik where CONCAT(imie, ' ', nazwisko, uzytkownik_nazwa) LIKE '%" + txtUNazwa->Text + "%';", laczBaze);
+		//MySqlCommand^ zapytanie = gcnew MySqlCommand("UPDATE imie, nazwisko, uzytkownik_nazwa FROM uzytkownik where CONCAT(imie, ' ', nazwisko, uzytkownik_nazwa) LIKE '%" + txtUNazwa->Text + "%';", laczBaze);
 
 
 
@@ -1030,10 +1036,16 @@ namespace Klinika {
 
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		czas_pracy();
-}
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-}
+		czas_pracy(7);
+	}
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		czas_pracy(8);
+	}
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		czas_pracy(9);
+	}
+	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+		czas_pracy(10);
+	}
 };
 }
