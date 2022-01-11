@@ -211,6 +211,7 @@ namespace Klinika {
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"U¿ytkownicy";
 			this->tabPage1->UseVisualStyleBackColor = true;
+			this->tabPage1->Click += gcnew System::EventHandler(this, &Program::tabPage1_Click);
 			// 
 			// gbGodziny
 			// 
@@ -239,6 +240,7 @@ namespace Klinika {
 			this->gbGodziny->TabIndex = 8;
 			this->gbGodziny->TabStop = false;
 			this->gbGodziny->Text = L"Godziny pracy";
+			this->gbGodziny->Visible = false;
 			// 
 			// gbSzablony
 			// 
@@ -466,13 +468,15 @@ namespace Klinika {
 			// dgUzytkownicy
 			// 
 			this->dgUzytkownicy->AllowUserToAddRows = false;
-			this->dgUzytkownicy->AllowUserToOrderColumns = true;
+			this->dgUzytkownicy->AllowUserToDeleteRows = false;
 			this->dgUzytkownicy->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgUzytkownicy->Location = System::Drawing::Point(447, 26);
 			this->dgUzytkownicy->Name = L"dgUzytkownicy";
+			this->dgUzytkownicy->ReadOnly = true;
 			this->dgUzytkownicy->Size = System::Drawing::Size(540, 194);
 			this->dgUzytkownicy->TabIndex = 4;
 			this->dgUzytkownicy->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Program::dgUzytkownicy_CellClick);
+			this->dgUzytkownicy->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Program::dgUzytkownicy_CellContentClick);
 			// 
 			// gBEdycja
 			// 
@@ -520,6 +524,7 @@ namespace Klinika {
 			this->txtUImie->Name = L"txtUImie";
 			this->txtUImie->Size = System::Drawing::Size(190, 20);
 			this->txtUImie->TabIndex = 3;
+			this->txtUImie->TextChanged += gcnew System::EventHandler(this, &Program::txtUImie_TextChanged);
 			// 
 			// label7
 			// 
@@ -804,7 +809,7 @@ namespace Klinika {
 		}
 	}
 
-
+	//Przycisk "SZUKAJ"
 	private: System::Void btnSzukaj_Click_Click(System::Object^ sender, System::EventArgs^ e) {
 		MySqlConnection^ laczBaze = gcnew MySqlConnection(konfiguracja);
 		MySqlCommand^ zapytanie = gcnew MySqlCommand("SELECT uzytkownik_id, imie, nazwisko, uzytkownik_nazwa AS login, pracownik FROM uzytkownik where CONCAT(imie, ' ', nazwisko, uzytkownik_nazwa) LIKE '%" + txtUNazwa->Text + "%';" , laczBaze);
@@ -838,7 +843,17 @@ namespace Klinika {
 			txtUImie->Text = dgUzytkownicy->Rows[e->RowIndex]->Cells["imie"]->Value->ToString();
 			txtUNazwisko->Text = dgUzytkownicy->Rows[e->RowIndex]->Cells["nazwisko"]->Value->ToString();
 			txtULogin->Text = dgUzytkownicy->Rows[e->RowIndex]->Cells["login"]->Value->ToString();
-			chbUPracownik->Checked = Convert::ToBoolean(dgUzytkownicy->Rows[e->RowIndex]->Cells["pracownik"]->Value);
+			chbUPracownik->Checked = Convert::ToBoolean(dgUzytkownicy->Rows[e->RowIndex]->Cells["pracownik"]->Value);		
+
+			//WYŒWIETLANIE TABELI GODZIN
+			if (chbUPracownik->Checked)
+			{
+				gbGodziny->Visible = true;
+			}
+			else {
+				gbGodziny->Visible = false;
+			}
+
 		}
 			btnUEdytuj->Enabled = true;
 			btnUUsun->Enabled = true;
@@ -905,6 +920,8 @@ namespace Klinika {
 		laczBaze->Close();
 		pokaz_siatke();
 		wyczysc(gBEdycja);
+		wyczysc(gbGodziny);
+
 
 		//MySqlCommand^ zapytanie = gcnew MySqlCommand("UPDATE imie, nazwisko, uzytkownik_nazwa FROM uzytkownik where CONCAT(imie, ' ', nazwisko, uzytkownik_nazwa) LIKE '%" + txtUNazwa->Text + "%';", laczBaze);
 	}
@@ -932,9 +949,19 @@ namespace Klinika {
 		{
 			if (MessageBox::Show("Czy na pewno chcesz usun¹æ u¿ytkownika " + txtULogin->Text + "" + "? ", "Uwaga!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
 			{
+				//USUWANIE GODZIN z tblGodziny
+				if (chbUPracownik->Checked)
+				{
+					//polecenie->CommandText = "DELETE FROM godziny WHERE uzytkownik_id=37";
+					polecenie->CommandText = "DELETE FROM godziny WHERE uzytkownik_id= " + id_uzytkownika + ";";
+					polecenie->ExecuteNonQuery();
+					MessageBox::Show("Godziny pracy: " + txtULogin->Text + " zosta³y usuniête");
+				}
+				
 				polecenie->CommandText = "DELETE FROM uzytkownik WHERE uzytkownik_id= " + id_rekordu + "", laczBaze;
 				polecenie->ExecuteNonQuery();
 				trasnsakcja->Commit();
+	
 				MessageBox::Show("Usuniêto u¿ytkownika " + txtULogin->Text + "", "Informacja", MessageBoxButtons::OK, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::Yes;
 			}
 		}
@@ -946,6 +973,7 @@ namespace Klinika {
 		laczBaze->Close();
 		pokaz_siatke();
 		wyczysc(gBEdycja);
+		wyczysc(gbGodziny);
 
 		//MySqlCommand^ zapytanie = gcnew MySqlCommand("UPDATE imie, nazwisko, uzytkownik_nazwa FROM uzytkownik where CONCAT(imie, ' ', nazwisko, uzytkownik_nazwa) LIKE '%" + txtUNazwa->Text + "%';", laczBaze);
 	}
@@ -1004,6 +1032,7 @@ namespace Klinika {
 		laczBaze->Close();
 		pokaz_siatke();
 		wyczysc(gBEdycja);
+		wyczysc(gbGodziny);
 
 		//MySqlCommand^ zapytanie = gcnew MySqlCommand("UPDATE imie, nazwisko, uzytkownik_nazwa FROM uzytkownik where CONCAT(imie, ' ', nazwisko, uzytkownik_nazwa) LIKE '%" + txtUNazwa->Text + "%';", laczBaze);
 
@@ -1047,5 +1076,11 @@ namespace Klinika {
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 		czas_pracy(10);
 	}
+private: System::Void tabPage1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void dgUzytkownicy_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+}
+private: System::Void txtUImie_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
