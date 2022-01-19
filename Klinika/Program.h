@@ -66,6 +66,20 @@ namespace Klinika {
 	private: System::Windows::Forms::TextBox^ txtOSzukaj;
 
 	private: System::Windows::Forms::Label^ label14;
+	private: System::Windows::Forms::TabPage^ tabPage4;
+	private: System::Windows::Forms::TextBox^ txtPNazwisko;
+	private: System::Windows::Forms::TextBox^ txtPImie;
+	private: System::Windows::Forms::Label^ label25;
+	private: System::Windows::Forms::Label^ label24;
+	private: System::Windows::Forms::DataGridView^ dgPDodaj;
+	private: System::Windows::Forms::Label^ label23;
+	private: System::Windows::Forms::DataGridView^ dgPZabiegi;
+	private: System::Windows::Forms::Label^ label22;
+	private: System::Windows::Forms::DataGridView^ dgPPraocownicy;
+	private: System::Windows::Forms::Label^ label21;
+	private: System::Windows::Forms::Button^ btnPSzukaj;
+	private: System::Windows::Forms::TextBox^ txtPSzukaj;
+	private: System::Windows::Forms::Label^ label20;
 	public:
 
 	public:
@@ -141,6 +155,20 @@ namespace Klinika {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Program::typeid));
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
+			this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
+			this->txtPNazwisko = (gcnew System::Windows::Forms::TextBox());
+			this->txtPImie = (gcnew System::Windows::Forms::TextBox());
+			this->label25 = (gcnew System::Windows::Forms::Label());
+			this->label24 = (gcnew System::Windows::Forms::Label());
+			this->dgPDodaj = (gcnew System::Windows::Forms::DataGridView());
+			this->label23 = (gcnew System::Windows::Forms::Label());
+			this->dgPZabiegi = (gcnew System::Windows::Forms::DataGridView());
+			this->label22 = (gcnew System::Windows::Forms::Label());
+			this->dgPPraocownicy = (gcnew System::Windows::Forms::DataGridView());
+			this->label21 = (gcnew System::Windows::Forms::Label());
+			this->btnPSzukaj = (gcnew System::Windows::Forms::Button());
+			this->txtPSzukaj = (gcnew System::Windows::Forms::TextBox());
+			this->label20 = (gcnew System::Windows::Forms::Label());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->gbGodziny = (gcnew System::Windows::Forms::GroupBox());
 			this->gbSzablony = (gcnew System::Windows::Forms::GroupBox());
@@ -209,6 +237,10 @@ namespace Klinika {
 			this->txtOSzukaj = (gcnew System::Windows::Forms::TextBox());
 			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->tabControl1->SuspendLayout();
+			this->tabPage4->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgPDodaj))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgPZabiegi))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgPPraocownicy))->BeginInit();
 			this->tabPage1->SuspendLayout();
 			this->gbGodziny->SuspendLayout();
 			this->gbSzablony->SuspendLayout();
@@ -224,6 +256,7 @@ namespace Klinika {
 			// tabControl1
 			// 
 			this->tabControl1->Alignment = System::Windows::Forms::TabAlignment::Bottom;
+			this->tabControl1->Controls->Add(this->tabPage4);
 			this->tabControl1->Controls->Add(this->tabPage1);
 			this->tabControl1->Controls->Add(this->tabPage2);
 			this->tabControl1->Controls->Add(this->tabPage3);
@@ -232,6 +265,138 @@ namespace Klinika {
 			this->tabControl1->SelectedIndex = 0;
 			this->tabControl1->Size = System::Drawing::Size(1010, 545);
 			this->tabControl1->TabIndex = 0;
+			// 
+			// tabPage4
+			// 
+			this->tabPage4->Controls->Add(this->txtPNazwisko);
+			this->tabPage4->Controls->Add(this->txtPImie);
+			this->tabPage4->Controls->Add(this->label25);
+			this->tabPage4->Controls->Add(this->label24);
+			this->tabPage4->Controls->Add(this->dgPDodaj);
+			this->tabPage4->Controls->Add(this->label23);
+			this->tabPage4->Controls->Add(this->dgPZabiegi);
+			this->tabPage4->Controls->Add(this->label22);
+			this->tabPage4->Controls->Add(this->dgPPraocownicy);
+			this->tabPage4->Controls->Add(this->label21);
+			this->tabPage4->Controls->Add(this->btnPSzukaj);
+			this->tabPage4->Controls->Add(this->txtPSzukaj);
+			this->tabPage4->Controls->Add(this->label20);
+			this->tabPage4->Location = System::Drawing::Point(4, 4);
+			this->tabPage4->Name = L"tabPage4";
+			this->tabPage4->Size = System::Drawing::Size(1002, 519);
+			this->tabPage4->TabIndex = 3;
+			this->tabPage4->Text = L"Pracownik-Zabiegi";
+			this->tabPage4->UseVisualStyleBackColor = true;
+			// 
+			// txtPNazwisko
+			// 
+			this->txtPNazwisko->Location = System::Drawing::Point(122, 153);
+			this->txtPNazwisko->Name = L"txtPNazwisko";
+			this->txtPNazwisko->Size = System::Drawing::Size(168, 20);
+			this->txtPNazwisko->TabIndex = 12;
+			// 
+			// txtPImie
+			// 
+			this->txtPImie->Location = System::Drawing::Point(122, 125);
+			this->txtPImie->Name = L"txtPImie";
+			this->txtPImie->Size = System::Drawing::Size(168, 20);
+			this->txtPImie->TabIndex = 11;
+			// 
+			// label25
+			// 
+			this->label25->AutoSize = true;
+			this->label25->Location = System::Drawing::Point(52, 156);
+			this->label25->Name = L"label25";
+			this->label25->Size = System::Drawing::Size(56, 13);
+			this->label25->TabIndex = 10;
+			this->label25->Text = L"Nazwisko:";
+			// 
+			// label24
+			// 
+			this->label24->AutoSize = true;
+			this->label24->Location = System::Drawing::Point(52, 125);
+			this->label24->Name = L"label24";
+			this->label24->Size = System::Drawing::Size(29, 13);
+			this->label24->TabIndex = 9;
+			this->label24->Text = L"Imiê:";
+			// 
+			// dgPDodaj
+			// 
+			this->dgPDodaj->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgPDodaj->Location = System::Drawing::Point(14, 299);
+			this->dgPDodaj->Name = L"dgPDodaj";
+			this->dgPDodaj->Size = System::Drawing::Size(410, 150);
+			this->dgPDodaj->TabIndex = 8;
+			// 
+			// label23
+			// 
+			this->label23->AutoSize = true;
+			this->label23->Location = System::Drawing::Point(11, 270);
+			this->label23->Name = L"label23";
+			this->label23->Size = System::Drawing::Size(145, 13);
+			this->label23->TabIndex = 7;
+			this->label23->Text = L"Dodaj zabieg do pracownika:";
+			// 
+			// dgPZabiegi
+			// 
+			this->dgPZabiegi->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgPZabiegi->Location = System::Drawing::Point(476, 299);
+			this->dgPZabiegi->Name = L"dgPZabiegi";
+			this->dgPZabiegi->Size = System::Drawing::Size(501, 150);
+			this->dgPZabiegi->TabIndex = 6;
+			// 
+			// label22
+			// 
+			this->label22->AutoSize = true;
+			this->label22->Location = System::Drawing::Point(473, 270);
+			this->label22->Name = L"label22";
+			this->label22->Size = System::Drawing::Size(111, 13);
+			this->label22->TabIndex = 5;
+			this->label22->Text = L"Wykonywane zabiegi:";
+			// 
+			// dgPPraocownicy
+			// 
+			this->dgPPraocownicy->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgPPraocownicy->Location = System::Drawing::Point(476, 70);
+			this->dgPPraocownicy->Name = L"dgPPraocownicy";
+			this->dgPPraocownicy->Size = System::Drawing::Size(501, 150);
+			this->dgPPraocownicy->TabIndex = 4;
+			this->dgPPraocownicy->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Program::dgPPraocownicy_CellClick);
+			// 
+			// label21
+			// 
+			this->label21->AutoSize = true;
+			this->label21->Location = System::Drawing::Point(473, 41);
+			this->label21->Name = L"label21";
+			this->label21->Size = System::Drawing::Size(65, 13);
+			this->label21->TabIndex = 3;
+			this->label21->Text = L"Pracownicy:";
+			// 
+			// btnPSzukaj
+			// 
+			this->btnPSzukaj->Location = System::Drawing::Point(366, 36);
+			this->btnPSzukaj->Name = L"btnPSzukaj";
+			this->btnPSzukaj->Size = System::Drawing::Size(75, 23);
+			this->btnPSzukaj->TabIndex = 2;
+			this->btnPSzukaj->Text = L"Szukaj";
+			this->btnPSzukaj->UseVisualStyleBackColor = true;
+			this->btnPSzukaj->Click += gcnew System::EventHandler(this, &Program::btnPSzukaj_Click);
+			// 
+			// txtPSzukaj
+			// 
+			this->txtPSzukaj->Location = System::Drawing::Point(122, 38);
+			this->txtPSzukaj->Name = L"txtPSzukaj";
+			this->txtPSzukaj->Size = System::Drawing::Size(226, 20);
+			this->txtPSzukaj->TabIndex = 1;
+			// 
+			// label20
+			// 
+			this->label20->AutoSize = true;
+			this->label20->Location = System::Drawing::Point(59, 41);
+			this->label20->Name = L"label20";
+			this->label20->Size = System::Drawing::Size(60, 13);
+			this->label20->TabIndex = 0;
+			this->label20->Text = L"Pracownik:";
 			// 
 			// tabPage1
 			// 
@@ -901,6 +1066,11 @@ namespace Klinika {
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Program";
 			this->tabControl1->ResumeLayout(false);
+			this->tabPage4->ResumeLayout(false);
+			this->tabPage4->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgPDodaj))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgPZabiegi))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgPPraocownicy))->EndInit();
 			this->tabPage1->ResumeLayout(false);
 			this->tabPage1->PerformLayout();
 			this->gbGodziny->ResumeLayout(false);
@@ -1387,6 +1557,8 @@ private: System::Void chbUPracownik_CheckedChanged(System::Object^ sender, Syste
 
 		   }
 		   siatka->Columns[0]->Visible = false;
+		   btnOEdytuj->Enabled = false;
+		   btnOUsun->Enabled = false;
 	   }
 
 private: System::Void btnOSzukaj_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1530,6 +1702,46 @@ private: System::Void btnOUsun_Click(System::Object^ sender, System::EventArgs^ 
 	laczBaze->Close();
 	pokaz_oferte(txtOSzukaj, dgOZabiegi);
 	wyczysc(gbZabiegi);
+}
+private: System::Void dgPPraocownicy_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+
+	id_rekordu = Convert::ToInt32(dgPPraocownicy->Rows[e->RowIndex]->Cells[0]->Value);
+	txtPImie->Text = dgPPraocownicy->Rows[e->RowIndex]->Cells["imie"]->Value->ToString();
+	txtPNazwisko->Text = dgPPraocownicy->Rows[e->RowIndex]->Cells["nazwisko"]->Value->ToString();
+
+	//TU SKONCZYLISMY 12.01.2022
+	//pokaz_oferte()
+}
+
+	   private: Void pokaz_pracownikow(System::Windows::Forms::TextBox^ pole, System::Windows::Forms::DataGridView^ siatka)
+	   {
+		   MySqlConnection^ laczBaze = gcnew MySqlConnection(konfiguracja);
+		   MySqlCommand^ zapytanie = gcnew MySqlCommand("SELECT uzytkownik_id, imie, nazwisko, uzytkownik_nazwa AS login, pracownik FROM uzytkownik WHERE CONCAT(imie, ' ', nazwisko, uzytkownik_nazwa) LIKE '%" + pole->Text + "%' ORDER BY nazwisko, imie;", laczBaze);
+		   try
+		   {
+			   laczBaze->Open();
+			   MySqlDataAdapter^ KlinikaBaza = gcnew MySqlDataAdapter();
+			   KlinikaBaza->SelectCommand = zapytanie;
+			   DataTable^ Utabela = gcnew DataTable();
+			   KlinikaBaza->Fill(Utabela);
+			   BindingSource^ zrodloKlinika = gcnew BindingSource();
+			   zrodloKlinika->DataSource = Utabela;
+			   siatka->DataSource = zrodloKlinika;
+			   laczBaze->Close();
+		   }
+		   catch (Exception^ komunikat)
+		   {
+			   MessageBox::Show(komunikat->Message);
+
+		   }
+		   siatka->Columns[0]->Visible = false;
+		 
+	   }
+
+
+private: System::Void btnPSzukaj_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	pokaz_pracownikow(txtPSzukaj, dgPPraocownicy);
 }
 };
 }
