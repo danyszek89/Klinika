@@ -47,6 +47,25 @@ namespace Klinika {
 	private: System::Windows::Forms::TextBox^ txtU1k;
 	private: System::Windows::Forms::TextBox^ txtU1p;
 	private: System::Windows::Forms::Label^ label15;
+	private: System::Windows::Forms::TabPage^ tabPage3;
+	private: System::Windows::Forms::Button^ btnOEdytuj;
+	private: System::Windows::Forms::Button^ btnOUsun;
+	private: System::Windows::Forms::Button^ btnODodaj;
+	private: System::Windows::Forms::GroupBox^ gbZabiegi;
+	private: System::Windows::Forms::TextBox^ txtOOpis;
+	private: System::Windows::Forms::TextBox^ txtOCzas;
+	private: System::Windows::Forms::TextBox^ txtOCena;
+	private: System::Windows::Forms::TextBox^ txtONazwa;
+	private: System::Windows::Forms::Label^ label19;
+	private: System::Windows::Forms::Label^ label18;
+	private: System::Windows::Forms::Label^ label17;
+	private: System::Windows::Forms::Label^ label16;
+	private: System::Windows::Forms::DataGridView^ dgOZabiegi;
+
+	private: System::Windows::Forms::Button^ btnOSzukaj;
+	private: System::Windows::Forms::TextBox^ txtOSzukaj;
+
+	private: System::Windows::Forms::Label^ label14;
 	public:
 
 	public:
@@ -172,6 +191,23 @@ namespace Klinika {
 			this->txtHNowe2 = (gcnew System::Windows::Forms::TextBox());
 			this->txtHNowe1 = (gcnew System::Windows::Forms::TextBox());
 			this->txtHStare = (gcnew System::Windows::Forms::TextBox());
+			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
+			this->btnOEdytuj = (gcnew System::Windows::Forms::Button());
+			this->btnOUsun = (gcnew System::Windows::Forms::Button());
+			this->btnODodaj = (gcnew System::Windows::Forms::Button());
+			this->gbZabiegi = (gcnew System::Windows::Forms::GroupBox());
+			this->txtOOpis = (gcnew System::Windows::Forms::TextBox());
+			this->txtOCzas = (gcnew System::Windows::Forms::TextBox());
+			this->txtOCena = (gcnew System::Windows::Forms::TextBox());
+			this->txtONazwa = (gcnew System::Windows::Forms::TextBox());
+			this->label19 = (gcnew System::Windows::Forms::Label());
+			this->label18 = (gcnew System::Windows::Forms::Label());
+			this->label17 = (gcnew System::Windows::Forms::Label());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->dgOZabiegi = (gcnew System::Windows::Forms::DataGridView());
+			this->btnOSzukaj = (gcnew System::Windows::Forms::Button());
+			this->txtOSzukaj = (gcnew System::Windows::Forms::TextBox());
+			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			this->gbGodziny->SuspendLayout();
@@ -180,6 +216,9 @@ namespace Klinika {
 			this->gBEdycja->SuspendLayout();
 			this->tabPage2->SuspendLayout();
 			this->groupBox1->SuspendLayout();
+			this->tabPage3->SuspendLayout();
+			this->gbZabiegi->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgOZabiegi))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// tabControl1
@@ -187,6 +226,7 @@ namespace Klinika {
 			this->tabControl1->Alignment = System::Windows::Forms::TabAlignment::Bottom;
 			this->tabControl1->Controls->Add(this->tabPage1);
 			this->tabControl1->Controls->Add(this->tabPage2);
+			this->tabControl1->Controls->Add(this->tabPage3);
 			this->tabControl1->Location = System::Drawing::Point(38, 47);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
@@ -503,6 +543,7 @@ namespace Klinika {
 			this->chbUPracownik->TabIndex = 6;
 			this->chbUPracownik->Text = L"Pracownik";
 			this->chbUPracownik->UseVisualStyleBackColor = true;
+			this->chbUPracownik->CheckedChanged += gcnew System::EventHandler(this, &Program::chbUPracownik_CheckedChanged);
 			// 
 			// txtULogin
 			// 
@@ -680,6 +721,175 @@ namespace Klinika {
 			this->txtHStare->TabIndex = 0;
 			this->txtHStare->TextChanged += gcnew System::EventHandler(this, &Program::txtHStare_TextChanged);
 			// 
+			// tabPage3
+			// 
+			this->tabPage3->Controls->Add(this->btnOEdytuj);
+			this->tabPage3->Controls->Add(this->btnOUsun);
+			this->tabPage3->Controls->Add(this->btnODodaj);
+			this->tabPage3->Controls->Add(this->gbZabiegi);
+			this->tabPage3->Controls->Add(this->dgOZabiegi);
+			this->tabPage3->Controls->Add(this->btnOSzukaj);
+			this->tabPage3->Controls->Add(this->txtOSzukaj);
+			this->tabPage3->Controls->Add(this->label14);
+			this->tabPage3->Location = System::Drawing::Point(4, 4);
+			this->tabPage3->Name = L"tabPage3";
+			this->tabPage3->Size = System::Drawing::Size(1002, 519);
+			this->tabPage3->TabIndex = 2;
+			this->tabPage3->Text = L"Oferta";
+			this->tabPage3->UseVisualStyleBackColor = true;
+			// 
+			// btnOEdytuj
+			// 
+			this->btnOEdytuj->Enabled = false;
+			this->btnOEdytuj->Location = System::Drawing::Point(333, 480);
+			this->btnOEdytuj->Name = L"btnOEdytuj";
+			this->btnOEdytuj->Size = System::Drawing::Size(75, 23);
+			this->btnOEdytuj->TabIndex = 7;
+			this->btnOEdytuj->Text = L"Edytuj";
+			this->btnOEdytuj->UseVisualStyleBackColor = true;
+			this->btnOEdytuj->Click += gcnew System::EventHandler(this, &Program::btnOEdytuj_Click);
+			// 
+			// btnOUsun
+			// 
+			this->btnOUsun->Enabled = false;
+			this->btnOUsun->Location = System::Drawing::Point(190, 480);
+			this->btnOUsun->Name = L"btnOUsun";
+			this->btnOUsun->Size = System::Drawing::Size(75, 23);
+			this->btnOUsun->TabIndex = 6;
+			this->btnOUsun->Text = L"Usuñ";
+			this->btnOUsun->UseVisualStyleBackColor = true;
+			this->btnOUsun->Click += gcnew System::EventHandler(this, &Program::btnOUsun_Click);
+			// 
+			// btnODodaj
+			// 
+			this->btnODodaj->Location = System::Drawing::Point(35, 480);
+			this->btnODodaj->Name = L"btnODodaj";
+			this->btnODodaj->Size = System::Drawing::Size(75, 23);
+			this->btnODodaj->TabIndex = 5;
+			this->btnODodaj->Text = L"Dodaj";
+			this->btnODodaj->UseVisualStyleBackColor = true;
+			this->btnODodaj->Click += gcnew System::EventHandler(this, &Program::btnODodaj_Click);
+			// 
+			// gbZabiegi
+			// 
+			this->gbZabiegi->Controls->Add(this->txtOOpis);
+			this->gbZabiegi->Controls->Add(this->txtOCzas);
+			this->gbZabiegi->Controls->Add(this->txtOCena);
+			this->gbZabiegi->Controls->Add(this->txtONazwa);
+			this->gbZabiegi->Controls->Add(this->label19);
+			this->gbZabiegi->Controls->Add(this->label18);
+			this->gbZabiegi->Controls->Add(this->label17);
+			this->gbZabiegi->Controls->Add(this->label16);
+			this->gbZabiegi->Location = System::Drawing::Point(35, 92);
+			this->gbZabiegi->Name = L"gbZabiegi";
+			this->gbZabiegi->Size = System::Drawing::Size(431, 371);
+			this->gbZabiegi->TabIndex = 4;
+			this->gbZabiegi->TabStop = false;
+			this->gbZabiegi->Text = L"Dane dotycz¹ce zabiegu:";
+			// 
+			// txtOOpis
+			// 
+			this->txtOOpis->Location = System::Drawing::Point(96, 186);
+			this->txtOOpis->Multiline = true;
+			this->txtOOpis->Name = L"txtOOpis";
+			this->txtOOpis->Size = System::Drawing::Size(254, 168);
+			this->txtOOpis->TabIndex = 7;
+			// 
+			// txtOCzas
+			// 
+			this->txtOCzas->Location = System::Drawing::Point(96, 146);
+			this->txtOCzas->Name = L"txtOCzas";
+			this->txtOCzas->Size = System::Drawing::Size(104, 20);
+			this->txtOCzas->TabIndex = 6;
+			// 
+			// txtOCena
+			// 
+			this->txtOCena->Location = System::Drawing::Point(96, 103);
+			this->txtOCena->Name = L"txtOCena";
+			this->txtOCena->Size = System::Drawing::Size(104, 20);
+			this->txtOCena->TabIndex = 5;
+			// 
+			// txtONazwa
+			// 
+			this->txtONazwa->Location = System::Drawing::Point(96, 55);
+			this->txtONazwa->Name = L"txtONazwa";
+			this->txtONazwa->Size = System::Drawing::Size(195, 20);
+			this->txtONazwa->TabIndex = 4;
+			// 
+			// label19
+			// 
+			this->label19->AutoSize = true;
+			this->label19->Location = System::Drawing::Point(26, 186);
+			this->label19->Name = L"label19";
+			this->label19->Size = System::Drawing::Size(28, 13);
+			this->label19->TabIndex = 3;
+			this->label19->Text = L"Opis";
+			// 
+			// label18
+			// 
+			this->label18->AutoSize = true;
+			this->label18->Location = System::Drawing::Point(26, 149);
+			this->label18->Name = L"label18";
+			this->label18->Size = System::Drawing::Size(30, 13);
+			this->label18->TabIndex = 2;
+			this->label18->Text = L"Czas";
+			// 
+			// label17
+			// 
+			this->label17->AutoSize = true;
+			this->label17->Location = System::Drawing::Point(24, 106);
+			this->label17->Name = L"label17";
+			this->label17->Size = System::Drawing::Size(32, 13);
+			this->label17->TabIndex = 1;
+			this->label17->Text = L"Cena";
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Location = System::Drawing::Point(24, 55);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(40, 13);
+			this->label16->TabIndex = 0;
+			this->label16->Text = L"Nazwa";
+			// 
+			// dgOZabiegi
+			// 
+			this->dgOZabiegi->AllowUserToAddRows = false;
+			this->dgOZabiegi->AllowUserToOrderColumns = true;
+			this->dgOZabiegi->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgOZabiegi->Location = System::Drawing::Point(496, 16);
+			this->dgOZabiegi->Name = L"dgOZabiegi";
+			this->dgOZabiegi->Size = System::Drawing::Size(484, 487);
+			this->dgOZabiegi->TabIndex = 3;
+			this->dgOZabiegi->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Program::dgOZabiegi_CellClick);
+			this->dgOZabiegi->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Program::dgOZabiegi_CellContentClick);
+			// 
+			// btnOSzukaj
+			// 
+			this->btnOSzukaj->Location = System::Drawing::Point(391, 37);
+			this->btnOSzukaj->Name = L"btnOSzukaj";
+			this->btnOSzukaj->Size = System::Drawing::Size(75, 23);
+			this->btnOSzukaj->TabIndex = 2;
+			this->btnOSzukaj->Text = L"Szukaj";
+			this->btnOSzukaj->UseVisualStyleBackColor = true;
+			this->btnOSzukaj->Click += gcnew System::EventHandler(this, &Program::btnOSzukaj_Click);
+			// 
+			// txtOSzukaj
+			// 
+			this->txtOSzukaj->Location = System::Drawing::Point(115, 39);
+			this->txtOSzukaj->Name = L"txtOSzukaj";
+			this->txtOSzukaj->Size = System::Drawing::Size(270, 20);
+			this->txtOSzukaj->TabIndex = 1;
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Location = System::Drawing::Point(42, 42);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(43, 13);
+			this->label14->TabIndex = 0;
+			this->label14->Text = L"Zabieg:";
+			// 
 			// Program
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -703,6 +913,11 @@ namespace Klinika {
 			this->tabPage2->PerformLayout();
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
+			this->tabPage3->ResumeLayout(false);
+			this->tabPage3->PerformLayout();
+			this->gbZabiegi->ResumeLayout(false);
+			this->gbZabiegi->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgOZabiegi))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -792,7 +1007,6 @@ namespace Klinika {
 			if (element->GetType() == TextBox::typeid)
 				element->Text = "";
 
-			chbUPracownik->Checked = false;
 			btnUEdytuj->Enabled = false;
 			btnUUsun->Enabled = false;
 		}
@@ -832,6 +1046,7 @@ namespace Klinika {
 		}
 		wyczysc(gBEdycja);
 		dgUzytkownicy->Columns[0]->Visible = false;
+		chbUPracownik->Checked = false;
 	}
 
 	//SIATKA U¯YTKOWNIKÓW
@@ -846,17 +1061,51 @@ namespace Klinika {
 			chbUPracownik->Checked = Convert::ToBoolean(dgUzytkownicy->Rows[e->RowIndex]->Cells["pracownik"]->Value);		
 
 			//WYŒWIETLANIE TABELI GODZIN
-			if (chbUPracownik->Checked)
-			{
-				gbGodziny->Visible = true;
-			}
-			else {
-				gbGodziny->Visible = false;
-			}
+			//if (chbUPracownik->Checked)
+			//{
+			//	gbGodziny->Visible = true;
+			//}
+			//else {
+			//	gbGodziny->Visible = false;
+			//}
 
-		}
+		//}
 			btnUEdytuj->Enabled = true;
 			btnUUsun->Enabled = true;
+
+			if (chbUPracownik->Checked)
+			{
+				MySqlConnection^ laczBaze = gcnew MySqlConnection(konfiguracja);
+				MySqlCommand^ zapytanie = gcnew MySqlCommand("SELECT * FROM godziny WHERE uzytkownik_id=" + id_rekordu + ";", laczBaze);
+				MySqlDataReader^ dane;
+
+				try {
+					laczBaze->Open();
+					dane = zapytanie->ExecuteReader();
+					while (dane->Read())
+					{
+						txtU1p->Text = dane->GetString("pon_od");
+						txtU1k->Text = dane->GetString("pon_do");
+						txtU2p->Text = dane->GetString("wt_od");
+						txtU2k->Text = dane->GetString("wt_do");
+						txtU3p->Text = dane->GetString("sr_od");
+						txtU3k->Text = dane->GetString("sr_do");
+						txtU4p->Text = dane->GetString("czw_od");
+						txtU4k->Text = dane->GetString("czw_do");
+						txtU5p->Text = dane->GetString("pt_od");
+						txtU5k->Text = dane->GetString("pt_do");
+						txtU6p->Text = dane->GetString("so_od");
+						txtU6k->Text = dane->GetString("so_do");
+					}
+					laczBaze->Close();
+				}
+				catch(Exception^ komunikat)
+				{
+					MessageBox::Show(komunikat->Message);
+					//zapytanie->Rollback();
+				}
+			}
+		}
 	}
 
 
@@ -921,6 +1170,7 @@ namespace Klinika {
 		pokaz_siatke();
 		wyczysc(gBEdycja);
 		wyczysc(gbGodziny);
+		chbUPracownik->Checked = false;
 
 
 		//MySqlCommand^ zapytanie = gcnew MySqlCommand("UPDATE imie, nazwisko, uzytkownik_nazwa FROM uzytkownik where CONCAT(imie, ' ', nazwisko, uzytkownik_nazwa) LIKE '%" + txtUNazwa->Text + "%';", laczBaze);
@@ -950,13 +1200,13 @@ namespace Klinika {
 			if (MessageBox::Show("Czy na pewno chcesz usun¹æ u¿ytkownika " + txtULogin->Text + "" + "? ", "Uwaga!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
 			{
 				//USUWANIE GODZIN z tblGodziny
-				if (chbUPracownik->Checked)
-				{
+				//if (chbUPracownik->Checked)
+				//{
 					//polecenie->CommandText = "DELETE FROM godziny WHERE uzytkownik_id=37";
-					polecenie->CommandText = "DELETE FROM godziny WHERE uzytkownik_id= " + id_uzytkownika + ";";
+					polecenie->CommandText = "DELETE FROM godziny WHERE uzytkownik_id= " + id_rekordu + ";";
 					polecenie->ExecuteNonQuery();
 					MessageBox::Show("Godziny pracy: " + txtULogin->Text + " zosta³y usuniête");
-				}
+				//}
 				
 				polecenie->CommandText = "DELETE FROM uzytkownik WHERE uzytkownik_id= " + id_rekordu + "", laczBaze;
 				polecenie->ExecuteNonQuery();
@@ -974,6 +1224,7 @@ namespace Klinika {
 		pokaz_siatke();
 		wyczysc(gBEdycja);
 		wyczysc(gbGodziny);
+		chbUPracownik->Checked = false;
 
 		//MySqlCommand^ zapytanie = gcnew MySqlCommand("UPDATE imie, nazwisko, uzytkownik_nazwa FROM uzytkownik where CONCAT(imie, ' ', nazwisko, uzytkownik_nazwa) LIKE '%" + txtUNazwa->Text + "%';", laczBaze);
 	}
@@ -996,7 +1247,6 @@ namespace Klinika {
 		MySqlCommand^ polecenie = laczBaze->CreateCommand();
 		MySqlTransaction^ transakcja;
 		laczBaze->Open();
-
 		transakcja = laczBaze->BeginTransaction(IsolationLevel::ReadCommitted);
 
 		polecenie->Connection = laczBaze;
@@ -1004,11 +1254,28 @@ namespace Klinika {
 
 		try
 		{
-			polecenie->CommandText = "UPDATE uzytkownik SET imie='" + txtUImie->Text + "', nazwisko='" + txtUNazwisko->Text + "', uzytkownik_nazwa = '" + txtULogin->Text + "', pracownik='"+pracownik_rodzaj+"'WHERE uzytkownik_id="+id_rekordu+";";
+			polecenie->CommandText = "SELECT * FROM godziny WHERE uzytkownik_id=" + id_rekordu + ";";
+			MySqlDataReader^ wynik = polecenie->ExecuteReader();
+
+			bool rezultat = wynik->HasRows;
+			wynik->Close();
+
+			polecenie->CommandText = "UPDATE uzytkownik SET imie='" + txtUImie->Text + "', nazwisko='" + txtUNazwisko->Text + "', uzytkownik_nazwa = '" + txtULogin->Text + "', pracownik='" + pracownik_rodzaj + "'WHERE uzytkownik_id=" + id_rekordu + ";";
 			polecenie->ExecuteNonQuery();
 
+		
+			
 
-
+			if (rezultat == true && chbUPracownik->Checked==true)
+			{
+				polecenie->CommandText = "UPDATE godziny SET pon_od='" + txtU1p->Text + "', pon_do= '" + txtU1k->Text + "',wt_od='" + txtU2p->Text + "', wt_do= '" + txtU2k->Text + "', sr_od='" + txtU3p->Text + "', sr_do= '" + txtU3k->Text + "', czw_od='" + txtU4p->Text + "', czw_do= '" + txtU4k->Text + "',pt_od='" + txtU5p->Text + "', pt_do= '" + txtU5k->Text + "',so_od='" + txtU6p->Text + "', so_do= '" + txtU6k->Text + "'WHERE uzytkownik_id="+id_rekordu+";";
+				polecenie->ExecuteNonQuery();
+			}
+			else if (rezultat == false && chbUPracownik->Checked == true)
+			{
+				polecenie->CommandText = "INSERT INTO godziny SET uzytkownik_id="+id_rekordu+ "  , pon_od='" + txtU1p->Text + "', pon_do= '" + txtU1k->Text + "',wt_od='" + txtU2p->Text + "', wt_do= '" + txtU2k->Text + "', sr_od='" + txtU3p->Text + "', sr_do= '" + txtU3k->Text + "', czw_od='" + txtU4p->Text + "', czw_do= '" + txtU4k->Text + "',pt_od='" + txtU5p->Text + "', pt_do= '" + txtU5k->Text + "',so_od='" + txtU6p->Text + "', so_do= '" + txtU6k->Text + "';";
+				polecenie->ExecuteNonQuery();
+			}
 
 			transakcja->Commit();
 			MessageBox::Show("Dane u¿ytkownika "+txtULogin->Text+" zosta³y zmodyfikowane");
@@ -1027,12 +1294,13 @@ namespace Klinika {
 		catch (Exception^ komunikat)
 		{
 			MessageBox::Show(komunikat->Message);
-			transakcja->Rollback();
+			//transakcja->Rollback();
 		}
 		laczBaze->Close();
 		pokaz_siatke();
 		wyczysc(gBEdycja);
 		wyczysc(gbGodziny);
+		chbUPracownik->Checked = false;
 
 		//MySqlCommand^ zapytanie = gcnew MySqlCommand("UPDATE imie, nazwisko, uzytkownik_nazwa FROM uzytkownik where CONCAT(imie, ' ', nazwisko, uzytkownik_nazwa) LIKE '%" + txtUNazwa->Text + "%';", laczBaze);
 
@@ -1081,6 +1349,187 @@ private: System::Void tabPage1_Click(System::Object^ sender, System::EventArgs^ 
 private: System::Void dgUzytkownicy_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
 private: System::Void txtUImie_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void chbUPracownik_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	if (chbUPracownik->Checked)
+	{
+		gbGodziny->Visible = true;
+	}
+	else
+	{
+		gbGodziny->Visible = false;
+	}
+	wyczysc(gbGodziny);
+	btnUEdytuj->Enabled = true;
+	btnUUsun->Enabled = true;
+}
+
+
+	   private: Void pokaz_oferte(System::Windows::Forms::TextBox^ pole, System::Windows::Forms::DataGridView^ siatka)
+	   {
+		   MySqlConnection^ laczBaze = gcnew MySqlConnection(konfiguracja);
+		   MySqlCommand^ zapytanie = gcnew MySqlCommand("SELECT * FROM zabiegi WHERE nazwa LIKE '%" + pole->Text + "%' ORDER BY nazwa;", laczBaze);
+		   try
+		   {
+			   laczBaze->Open();
+			   MySqlDataAdapter^ KlinikaBaza = gcnew MySqlDataAdapter();
+			   KlinikaBaza->SelectCommand = zapytanie;
+			   DataTable^ Utabela = gcnew DataTable();
+			   KlinikaBaza->Fill(Utabela);
+			   BindingSource^ zrodloKlinika = gcnew BindingSource();
+			   zrodloKlinika->DataSource = Utabela;
+			   siatka->DataSource = zrodloKlinika;
+			   laczBaze->Close();
+		   }
+		   catch (Exception^ komunikat)
+		   {
+			   MessageBox::Show(komunikat->Message);
+
+		   }
+		   siatka->Columns[0]->Visible = false;
+	   }
+
+private: System::Void btnOSzukaj_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+	pokaz_oferte(txtOSzukaj, dgOZabiegi);
+}
+private: System::Void dgOZabiegi_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+
+}
+private: System::Void dgOZabiegi_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+
+	id_rekordu = Convert::ToInt32(dgOZabiegi->Rows[e->RowIndex]->Cells[0]->Value);
+	txtONazwa->Text = dgOZabiegi->Rows[e->RowIndex]->Cells["nazwa"]->Value->ToString();
+	txtOCena->Text = dgOZabiegi->Rows[e->RowIndex]->Cells["cena"]->Value->ToString();
+	txtOCzas->Text = dgOZabiegi->Rows[e->RowIndex]->Cells["czas"]->Value->ToString();
+	txtOOpis->Text = dgOZabiegi->Rows[e->RowIndex]->Cells["opis"]->Value->ToString();
+
+	btnOEdytuj->Enabled = true;
+	btnOUsun->Enabled = true;
+}
+
+
+private: System::Void btnODodaj_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	if (txtONazwa->Text->Length < 3 || txtOCena->Text->Length < 1 || txtOCzas->Text->Length < 5)
+	{
+		MessageBox::Show("WprowadŸ poprawne dane!");
+		return;
+	}
+	else
+	{
+		//MessageBox::Show("Dane poprawne");
+		//uzytkownik_rodzaj();
+	}
+
+	MySqlConnection^ laczBaze = gcnew MySqlConnection(konfiguracja);
+	MySqlCommand^ polecenie = laczBaze->CreateCommand();
+	MySqlTransaction^ transakcja;
+	laczBaze->Open();
+
+	transakcja = laczBaze->BeginTransaction(IsolationLevel::ReadCommitted);
+
+	polecenie->Connection = laczBaze;
+	polecenie->Transaction = transakcja;
+
+	try
+	{
+		String^ cena = txtOCena->Text->Replace(",", ".");
+		polecenie->CommandText = "INSERT INTO zabiegi SET nazwa='" + txtONazwa->Text + "', cena='" + cena + "', czas = '" + txtOCzas->Text + "', opis = '" + txtOOpis->Text + "'; ";
+		polecenie->ExecuteNonQuery();
+
+		transakcja->Commit();
+		MessageBox::Show("Zabieg " + txtONazwa->Text + " zostal dodany");
+	}
+	catch (Exception^ komunikat)
+	{
+		MessageBox::Show(komunikat->Message);
+		transakcja->Rollback();
+	}
+	laczBaze->Close();
+	pokaz_oferte(txtOSzukaj, dgOZabiegi);
+	wyczysc(gbZabiegi);
+	
+	
+
+}
+
+
+private: System::Void btnOEdytuj_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (txtONazwa->Text->Length < 3 || txtOCena->Text->Length < 1 || txtOCzas->Text->Length < 5)
+	{
+		MessageBox::Show("WprowadŸ poprawne dane!");
+		return;
+	}
+	else
+	{
+		//MessageBox::Show("Dane poprawne");
+		//uzytkownik_rodzaj();
+	}
+
+	MySqlConnection^ laczBaze = gcnew MySqlConnection(konfiguracja);
+	MySqlCommand^ polecenie = laczBaze->CreateCommand();
+	MySqlTransaction^ transakcja;
+	laczBaze->Open();
+
+	transakcja = laczBaze->BeginTransaction(IsolationLevel::ReadCommitted);
+
+	polecenie->Connection = laczBaze;
+	polecenie->Transaction = transakcja;
+
+	try
+	{
+		String^ cena = txtOCena->Text->Replace(",", ".");
+
+		polecenie->CommandText = "UPDATE zabiegi SET nazwa='" + txtONazwa->Text + "', cena='" + cena + "', czas = '" + txtOCzas->Text + "', opis = '" + txtOOpis->Text + "' WHERE zabiegi_id="+id_rekordu+"; ";
+		polecenie->ExecuteNonQuery();
+
+		transakcja->Commit();
+		MessageBox::Show("Zabieg " + txtONazwa->Text + " zostal zmodyfikowany");
+	}
+	catch (Exception^ komunikat)
+	{
+		MessageBox::Show(komunikat->Message);
+		transakcja->Rollback();
+	}
+	laczBaze->Close();
+	pokaz_oferte(txtOSzukaj, dgOZabiegi);
+	wyczysc(gbZabiegi);
+}
+
+
+private: System::Void btnOUsun_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	MySqlConnection^ laczBaze = gcnew MySqlConnection(konfiguracja);
+	MySqlCommand^ polecenie = laczBaze->CreateCommand();
+	MySqlTransaction^ transakcja;
+	laczBaze->Open();
+
+	transakcja = laczBaze->BeginTransaction(IsolationLevel::ReadCommitted);
+
+	polecenie->Connection = laczBaze;
+	polecenie->Transaction = transakcja;
+
+	try
+	{
+		if (MessageBox::Show("Czy na pewno chcesz usun¹æ zabieg " + txtONazwa->Text + "" + "? ", "Uwaga!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
+		{
+			polecenie->CommandText = "DELETE FROM zabiegi WHERE zabiegi_id=" + id_rekordu + "; ";
+			polecenie->ExecuteNonQuery();
+
+			transakcja->Commit();
+			MessageBox::Show("Zabieg " + txtONazwa->Text + " zostal usuniêty");
+		}
+		
+	}
+	catch (Exception^ komunikat)
+	{
+		MessageBox::Show(komunikat->Message);
+		transakcja->Rollback();
+	}
+	laczBaze->Close();
+	pokaz_oferte(txtOSzukaj, dgOZabiegi);
+	wyczysc(gbZabiegi);
 }
 };
 }
